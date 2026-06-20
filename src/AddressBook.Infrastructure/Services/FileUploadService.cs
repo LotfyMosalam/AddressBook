@@ -43,8 +43,14 @@ public class FileUploadService : IFileUploadService
         var uniqueFileName = $"{Guid.NewGuid()}{extension}";
         var physicalFilePath = Path.Combine(physicalDirectory, uniqueFileName);
 
-        await using var output = File.Create(physicalFilePath);
-        await fileStream.CopyToAsync(output, cancellationToken);
+        await using var output = new FileStream(
+            physicalFilePath,
+            FileMode.Create,
+            FileAccess.Write,
+            FileShare.None,
+            bufferSize: 81920,
+            useAsync: true);
+        await fileStream.CopyToAsync(output, 81920, cancellationToken);
 
         // Return a URL path relative to the server root (served by UseStaticFiles)
         return $"/{relativeFolderPath.Replace('\\', '/')}/{uniqueFileName}";
