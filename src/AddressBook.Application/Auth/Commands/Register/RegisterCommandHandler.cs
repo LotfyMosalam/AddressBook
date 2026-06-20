@@ -2,6 +2,7 @@ using AddressBook.Application.Auth.DTOs;
 using AddressBook.Application.Common.Exceptions;
 using AddressBook.Application.Common.Interfaces;
 using AddressBook.Domain.Entities;
+using AddressBook.Domain.Enums;
 using MediatR;
 
 namespace AddressBook.Application.Auth.Commands.Register;
@@ -31,7 +32,7 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, AuthRespo
             throw new ConflictException($"Email '{request.Email}' is already registered.");
 
         var passwordHash = _passwordHasher.Hash(request.Password);
-        var user = User.Create(request.Email, passwordHash, request.Role);
+        var user = User.Create(request.Email, passwordHash, UserRole.User);
 
         await _userRepository.AddAsync(user, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
