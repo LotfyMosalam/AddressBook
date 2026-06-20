@@ -10,6 +10,7 @@ namespace AddressBook.API.Controllers;
 [Route("api/auth")]
 public class AuthController : ApiController
 {
+
     public AuthController(IMediator mediator) : base(mediator) { }
 
     [HttpPost("register")]
