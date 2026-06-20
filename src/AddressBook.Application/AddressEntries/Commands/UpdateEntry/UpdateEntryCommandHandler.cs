@@ -33,8 +33,7 @@ public class UpdateEntryCommandHandler : IRequestHandler<UpdateEntryCommand>
             request.MobileNumber,
             request.DateOfBirth,
             request.Address,
-            request.Email,
-            request.PhotoUrl);
+            request.Email);
 
         _repository.Update(entry);
         await _context.SaveChangesAsync(cancellationToken);

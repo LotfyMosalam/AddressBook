@@ -12,5 +12,4 @@ public record UpdateEntryCommand : IRequest
     public DateTime DateOfBirth { get; init; }
     public string Address { get; init; } = string.Empty;
     public string Email { get; init; } = string.Empty;
-    public string? PhotoUrl { get; init; }
 }

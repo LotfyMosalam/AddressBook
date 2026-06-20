@@ -36,9 +36,5 @@ public class UpdateEntryCommandValidator : AbstractValidator<UpdateEntryCommand>
             .NotEmpty().WithMessage("Email is required.")
             .EmailAddress().WithMessage("Email format is invalid.")
             .MaximumLength(100).WithMessage("Email must not exceed 100 characters.");
-
-        RuleFor(x => x.PhotoUrl)
-            .MaximumLength(500).WithMessage("Photo URL must not exceed 500 characters.")
-            .When(x => !string.IsNullOrEmpty(x.PhotoUrl));
     }
 }

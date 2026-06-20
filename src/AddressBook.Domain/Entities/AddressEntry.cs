@@ -58,8 +58,7 @@ public sealed class AddressEntry : BaseEntity
         string mobileNumber,
         DateTime dateOfBirth,
         string address,
-        string email,
-        string? photoUrl)
+        string email)
     {
         ValidateFields(fullName, jobId, departmentId, mobileNumber, dateOfBirth, address, email);
 
@@ -70,7 +69,6 @@ public sealed class AddressEntry : BaseEntity
         DateOfBirth = dateOfBirth.Date;
         Address = address.Trim();
         Email = email.Trim().ToLowerInvariant();
-        PhotoUrl = photoUrl?.Trim();
     }
 
     public void ChangePassword(string password)
